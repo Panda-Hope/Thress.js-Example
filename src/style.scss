@@ -1,0 +1,110 @@
+@import "normalize.css";
+
+* {
+  box-sizing: border-box;
+
+  *:before, *:after {
+    box-sizing: border-box;
+  }
+}
+
+
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+@for $i from 1 through 9 {
+  h#{$i} {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+$gaps: 4, 8, 10, 12, 16, 18, 20, 30, 40;
+
+@mixin box-gap($name, $direction, $gap) {
+  .#{$name}-#{$gap} {
+    #{$direction}: #{$gap}px;
+  }
+}
+
+@each $gap in $gaps {
+  @include box-gap('mr', 'margin-right', $gap);
+  @include box-gap('ml', 'margin-left', $gap);
+  @include box-gap('mb', 'margin-bottom', $gap);
+  @include box-gap('mt', 'margin-top', $gap);
+  @include box-gap('ma', 'margin', $gap);
+
+  @include box-gap('pr', 'padding-right', $gap);
+  @include box-gap('pl', 'padding-left', $gap);
+  @include box-gap('pb', 'padding-bottom', $gap);
+  @include box-gap('pt', 'padding-top', $gap);
+  @include box-gap('pa', 'padding', $gap);
+}
+
+@mixin ellipsis($n) {
+  .text-ellipsis_#{$n} {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    display: -webkit-box;
+    -webkit-line-clamp: $n;
+    /*! autoprefixer: ignore next */
+    -webkit-box-orient: vertical;
+    white-space: normal;
+  }
+}
+
+$gaps: 1,2,3;
+
+@each $gap in $gaps {
+  @include ellipsis($gap);
+}
+
+.flex {
+  display: flex;
+}
+
+.container {
+  display: flex;
+}
+
+@media (min-width: 768px) {
+  .container-pc {
+
+  }
+}
+
+.container-fluid	{
+  display: flex;
+  width: 100%;
+}
+
+:root {
+  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
